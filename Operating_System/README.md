@@ -7,3 +7,4 @@
 * [Ch03. 프로세스 관리](https://github.com/yjh2569/CS_Study/tree/main/Operating_System/Ch03_프로세스_관리.md)
 * [Ch04. CPU 스케쥴링](https://github.com/yjh2569/CS_Study/tree/main/Operating_System/Ch04_CPU_스케쥴링.md)
 * [Ch05. 병행 제어](https://github.com/yjh2569/CS_Study/tree/main/Operating_System/Ch05_병행_제어.md)
+* [Ch06. Deadlocks](https://github.com/yjh2569/CS_Study/tree/main/Operating_System/Ch06_Deadlocks.md)
