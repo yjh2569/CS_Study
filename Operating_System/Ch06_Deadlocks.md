@@ -84,3 +84,47 @@
     * R_j가 release되면 assignment edge는 다시 claim edge로 바뀐다.
   * request edge의 assignment edge 변경시 (점선을 포함하여) cyle이 생기지 않는 경우에만 요청 자원을 할당한다.
   * Cycle 생성 여부 조사시 프로세스의 수가 n일 때 O(n^2) 시간이 걸린다.
+* Banker's Algorithm
+  * 가정
+    * 모든 프로세스는 자원의 최대 사용량을 미리 명시
+    * 프로세스가 요청 자원을 모두 할당받은 경우 유한 시간 안에 자원을 다시 반납한다.
+  * 방법
+    * 자원 요청시 safe 상태를 유지할 경우에만 할당
+    * 총 요청 자원의 수가 가용 자원의 수보다 적은 프로세스를 선택(그런 프로세스가 없다면 unsafe 상태)
+    * 그런 프로세스가 있다면 그 프로세스에게 자원 할당
+    * 할당받은 프로세스가 종료되면 모든 자원을 반납
+    * 모든 프로세스가 종료될 때까지 이러한 과정 반복
+  ![deadlock_2](https://user-images.githubusercontent.com/70595250/159108529-258395d5-7dce-4ccc-bbe5-4ec3b5cbb33f.PNG)
+
+### Deadlock Detection and Recovery
+
+* Deadlock Detection
+  * Resource type 당 single instance인 경우 : 자원 할당 그래프에서 cycle을 찾는다.
+  * Resource type 당 multiple instance인 경우 ; banker's algorithm과 유사한 방법 활용
+* Wait-for graph 알고리즘
+  * Resource type 당 single instance의 경우
+    * Wait-for graph
+      * 자원할당 그래프의 변형
+      * 프로세스만으로 node 구성
+      * P_i가 가지고 있는 자원을 P_k가 기다리는 경우 P_k -> P_i
+    * Algorithm
+      * Wait-for graph에 사이클이 존재하는지를 주기적으로 조사
+      * O(n^2)
+  * Resource type 당 multiple instance인 경우 : banker's algorithm을 활용하나 추가요청가능량이 아닌 현재 실제로 요청한 자원량을 이용한다.
+* Recovery
+  * Process termination
+    * 모든 deadlock된 프로세스들을 abort시킨다.
+    * deadlock cycle이 없어질 때까지 프로세스를 하나씩 abort시킨다.
+  * Resource Preemption
+    * 비용을 최소화할 victim의 선정
+    * safe state로 rollback하여 process를 재시작
+    * Starvation
+      * 동일한 프로세스가 계속해서 victim으로 선정되는 경우
+      * cost factor에 rollback 횟수도 같이 고려
+
+### Deadlock Ignorance
+
+* Deadlock이 일어나지 않는다고 생각하고 아무런 조치도 취하지 않는다.
+* Deadlock이 매우 드물게 발생하므로 deadlock에 대한 조치가 더 큰 overhead일 수 있다.
+* 만약 시스템에 deadlock이 발생한 경우 시스템이 비정상적으로 작동하는 것을 사람이 느낀 후 직접 process를 죽이는 등의 방법으로 대처
+* UNIX, Windows 등 대부분의 범용 OS가 채택
