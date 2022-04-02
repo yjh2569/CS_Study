@@ -9,3 +9,4 @@
 * [Ch05. 병행 제어](https://github.com/yjh2569/CS_Study/tree/main/Operating_System/Ch05_병행_제어.md)
 * [Ch06. Deadlocks](https://github.com/yjh2569/CS_Study/tree/main/Operating_System/Ch06_Deadlocks.md)
 * [Ch07. 메모리 관리](https://github.com/yjh2569/CS_Study/tree/main/Operating_System/Ch07_메모리_관리.md)
+* [Ch08. 가상 메모리](https://github.com/yjh2569/CS_Study/tree/main/Operating_System/Ch07_가상_메모리.md)
